@@ -1,33 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import ProductCard from './ProductCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from '../redux/actions/actions';
 
 const Products = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
 
-	const products = [
-		{
-			productId: 1,
-			productName: 'Product 1',
-			image: 'https://place-hold.it/300',
-			description: 'This is product 1',
-			quantity: 5,
-			price: 1000.0,
-			discount: 0,
-			specialPrice: '',
-		},
-		{
-			productId: 2,
-			productName: 'Product 2',
-			image: 'https://place-hold.it/300',
-			description: 'This is product 2',
-			quantity: 0,
-			price: 100.0,
-			discount: 10.0,
-			specialPrice: 90,
-		},
-	];
+	// Redux
+	const { products } = useSelector((state) => state.products);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getAllProducts());
+	}, [dispatch]);
 
 	if (isLoading)
 		return (
