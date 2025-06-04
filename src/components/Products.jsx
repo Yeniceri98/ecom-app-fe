@@ -14,7 +14,7 @@ const Products = () => {
 			description: 'This is product 1',
 			quantity: 5,
 			price: 1000.0,
-			discount: '',
+			discount: 0,
 			specialPrice: '',
 		},
 		{
