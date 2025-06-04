@@ -1,5 +1,4 @@
 import {
-	Button,
 	Dialog,
 	DialogBackdrop,
 	DialogPanel,
@@ -20,10 +19,6 @@ function ProductViewModal({ isOpen, setIsOpen, product, isAvailable }) {
 		discount,
 		specialPrice,
 	} = product;
-
-	function openDialog() {
-		setIsOpen(true);
-	}
 
 	function closeDialog() {
 		setIsOpen(false);
