@@ -3,7 +3,7 @@ const initialState = {
 	errorMessage: null,
 };
 
-const errorReducer = (state = initialState, action) => {
+const loadingAndErrorsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'FETCH_PRODUCTS_REQUEST':
 			return {
@@ -28,4 +28,4 @@ const errorReducer = (state = initialState, action) => {
 	}
 };
 
-export default errorReducer;
+export default loadingAndErrorsReducer;

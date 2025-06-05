@@ -7,7 +7,10 @@ import { getAllProducts } from '../redux/actions/actions';
 const Products = () => {
 	// Redux
 	const { products } = useSelector((state) => state.products);
-	const { isLoading, errorMessage } = useSelector((state) => state.errors);
+	const { isLoading, errorMessage } = useSelector(
+		(state) => state.loadingAndErrors
+	);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {

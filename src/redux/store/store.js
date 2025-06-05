@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from '../reducers/productsReducer';
-import errorReducer from '../reducers/errorReducer';
+import loadingAndErrorsReducer from '../reducers/loadingAndErrorsReducer';
 
 const store = configureStore({
 	reducer: {
 		products: productsReducer,
-		errors: errorReducer,
+		loadingAndErrors: loadingAndErrorsReducer,
 	},
 	preloadedState: {},
 });
