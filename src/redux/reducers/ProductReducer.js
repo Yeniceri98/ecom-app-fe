@@ -4,7 +4,7 @@ const initialState = {
 	pagination: {},
 };
 
-export const productReducer = (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'GET_ALL_PRODUCTS':
 			return {
@@ -23,3 +23,5 @@ export const productReducer = (state = initialState, action) => {
 			return state;
 	}
 };
+
+export default productReducer;
