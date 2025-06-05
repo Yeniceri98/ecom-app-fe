@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import ProductCard from './ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions/actions';
 
 const Products = () => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(false);
-
 	// Redux
 	const { products } = useSelector((state) => state.products);
+	const { isLoading, errorMessage } = useSelector((state) => state.errors);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -18,14 +16,17 @@ const Products = () => {
 
 	if (isLoading)
 		return (
-			<p className="text-lg text-gray-600 text-center py-8">It is loading...</p>
+			<div className="flex items-center justify-center gap-3 py-8">
+				<div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
+				<p className="text-lg text-gray-600">Loading products...</p>
+			</div>
 		);
 
-	if (error)
+	if (errorMessage)
 		return (
 			<div className="flex items-center justify-center gap-2 text-red-600 py-8">
 				<FaExclamationTriangle className="text-slate-800 text-3xl" />
-				<span className="text-lg">Error is occured: {error}</span>
+				<span className="text-lg">Error is occured: {errorMessage}</span>
 			</div>
 		);
 
@@ -41,4 +42,5 @@ const Products = () => {
 		</div>
 	);
 };
+
 export default Products;
