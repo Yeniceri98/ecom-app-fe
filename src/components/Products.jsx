@@ -3,6 +3,7 @@ import { FaExclamationTriangle } from 'react-icons/fa';
 import ProductCard from './ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions/actions';
+import Filter from './Filter';
 
 const Products = () => {
 	// Redux
@@ -35,6 +36,7 @@ const Products = () => {
 
 	return (
 		<div className="container mx-auto px-4 py-8">
+			<Filter />
 			<h2 className="text-3xl font-bold text-gray-800 mb-6">Our Products</h2>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{products &&
