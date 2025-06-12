@@ -5,19 +5,19 @@ const initialState = {
 
 const loadingAndErrorsReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'FETCH_REQUEST':
+		case 'FETCH_PRODUCTS_REQUEST':
 			return {
 				...state,
 				isLoading: true,
 				errorMessage: null,
 			};
-		case 'FETCH_SUCCESS':
+		case 'FETCH_PRODUCTS_SUCCESS':
 			return {
 				...state,
 				isLoading: false,
 				errorMessage: null,
 			};
-		case 'FETCH_ERROR':
+		case 'FETCH_PRODUCTS_ERROR':
 			return {
 				...state,
 				isLoading: false,
