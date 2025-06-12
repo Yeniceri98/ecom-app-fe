@@ -9,7 +9,7 @@ import Paginations from './Paginations';
 
 const Products = () => {
 	// Redux
-	const { products } = useSelector((state) => state.products);
+	const { products, pagination } = useSelector((state) => state.products);
 	const { categories } = useSelector((state) => state.categories);
 	const {
 		productLoading,
@@ -64,7 +64,7 @@ const Products = () => {
 						))}
 					</div>
 					<div className="flex justify-center pt-10">
-						<Paginations />
+						<Paginations paginationObject={pagination} />
 					</div>
 				</>
 			) : (
