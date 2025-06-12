@@ -10,9 +10,12 @@ const Products = () => {
 	// Redux
 	const { products } = useSelector((state) => state.products);
 	const { categories } = useSelector((state) => state.categories);
-	const { isLoading, errorMessage } = useSelector(
-		(state) => state.loadingAndErrors
-	);
+	const {
+		productLoading,
+		categoryLoading,
+		productErrorMessage,
+		categoryErrorMessage,
+	} = useSelector((state) => state.loadingAndErrors);
 
 	// Product
 	useProductFilter();
@@ -24,7 +27,7 @@ const Products = () => {
 		dispatch(getAllCategories());
 	}, [dispatch]);
 
-	if (isLoading)
+	if (productLoading)
 		return (
 			<div className="flex items-center justify-center gap-3 py-8">
 				<div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
@@ -32,17 +35,23 @@ const Products = () => {
 			</div>
 		);
 
-	if (errorMessage)
+	if (productErrorMessage)
 		return (
 			<div className="flex items-center justify-center gap-2 text-red-600 py-8">
 				<FaExclamationTriangle className="text-slate-800 text-3xl" />
-				<span className="text-lg">Error is occured: {errorMessage}</span>
+				<span className="text-lg">Error occurred: {productErrorMessage}</span>
 			</div>
 		);
 
 	return (
 		<div className="container mx-auto px-4 py-8">
 			<Filter categories={categories ? categories : []} />
+			{categoryLoading && <div className="mb-6">Loading categories...</div>}
+			{categoryErrorMessage && (
+				<div className="mb-6 text-red-600">
+					Error loading categories: {categoryErrorMessage}
+				</div>
+			)}
 			{products?.length > 0 ? (
 				<>
 					<h2 className="text-3xl font-bold text-gray-800 mb-6">

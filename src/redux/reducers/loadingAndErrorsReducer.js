@@ -1,6 +1,8 @@
 const initialState = {
-	isLoading: false,
-	errorMessage: null,
+	productLoading: false,
+	categoryLoading: false,
+	productErrorMessage: null,
+	categoryErrorMessage: null,
 };
 
 const loadingAndErrorsReducer = (state = initialState, action) => {
@@ -8,20 +10,40 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 		case 'FETCH_PRODUCTS_REQUEST':
 			return {
 				...state,
-				isLoading: true,
-				errorMessage: null,
+				productLoading: true,
+				productErrorMessage: null,
 			};
+		case 'FETCH_CATEGORIES_REQUEST':
+			return {
+				...state,
+				categoryLoading: true,
+				categoryErrorMessage: null,
+			};
+
 		case 'FETCH_PRODUCTS_SUCCESS':
 			return {
 				...state,
-				isLoading: false,
-				errorMessage: null,
+				productLoading: false,
+				productErrorMessage: null,
 			};
+		case 'FETCH_CATEGORIES_SUCCESS':
+			return {
+				...state,
+				categoryLoading: false,
+				categoryErrorMessage: null,
+			};
+
 		case 'FETCH_PRODUCTS_ERROR':
 			return {
 				...state,
-				isLoading: false,
-				errorMessage: action.payload,
+				productLoading: false,
+				productErrorMessage: action.payload,
+			};
+		case 'FETCH_CATEGORIES_ERROR':
+			return {
+				...state,
+				categoryLoading: false,
+				categoryErrorMessage: action.payload,
 			};
 		default:
 			return state;
