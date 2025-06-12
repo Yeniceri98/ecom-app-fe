@@ -5,6 +5,7 @@ import Filter from './Filter';
 import useProductFilter from './useProductFilter';
 import { getAllCategories } from '../redux/actions/categoryActions';
 import { useEffect } from 'react';
+import Paginations from './Paginations';
 
 const Products = () => {
 	// Redux
@@ -61,6 +62,9 @@ const Products = () => {
 						{products.map((product) => (
 							<ProductCard key={product.id} {...product} />
 						))}
+					</div>
+					<div className="flex justify-center pt-10">
+						<Paginations />
 					</div>
 				</>
 			) : (
