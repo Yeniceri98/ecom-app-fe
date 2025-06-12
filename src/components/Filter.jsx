@@ -11,22 +11,7 @@ import { FiArrowUp, FiArrowDown, FiSearch } from 'react-icons/fi';
 import { IoIosRefresh } from 'react-icons/io';
 import { useSearchParams } from 'react-router-dom';
 
-const Filter = () => {
-	const categories = [
-		{
-			categoryId: 1,
-			categoryName: 'Phone',
-		},
-		{
-			categoryId: 2,
-			categoryName: 'TV',
-		},
-		{
-			categoryId: 3,
-			categoryName: 'Clothes',
-		},
-	];
-
+const Filter = ({ categories }) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const [category, setCategory] = useState('all');
