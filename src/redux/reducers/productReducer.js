@@ -1,10 +1,9 @@
 const initialState = {
 	products: null,
-	categories: null,
 	pagination: {},
 };
 
-const productsReducer = (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'GET_ALL_PRODUCTS':
 			return {
@@ -24,4 +23,4 @@ const productsReducer = (state = initialState, action) => {
 	}
 };
 
-export default productsReducer;
+export default productReducer;
