@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
 	Button,
 	FormControl,
@@ -7,7 +7,9 @@ import {
 	Select,
 	Tooltip,
 } from '@mui/material';
-import { FiArrowUp, FiSearch } from 'react-icons/fi';
+import { FiArrowUp, FiArrowDown, FiSearch } from 'react-icons/fi';
+import { IoIosRefresh } from 'react-icons/io';
+import { useSearchParams } from 'react-router-dom';
 
 const Filter = () => {
 	const categories = [
@@ -25,10 +27,64 @@ const Filter = () => {
 		},
 	];
 
+	const [searchParams, setSearchParams] = useSearchParams();
+
 	const [category, setCategory] = useState('all');
+	const [sortOrder, setSortOrder] = useState('asc');
+	const [searchTerm, setSearchTerm] = useState('');
+
+	// For perfomance boost
+	const params = useMemo(
+		() => new URLSearchParams(searchParams),
+		[searchParams]
+	);
+
+	useEffect(() => {
+		setCategory(params.get('category') || 'all');
+		setSortOrder(params.get('sortby') || 'asc');
+		setSearchTerm(params.get('keyword') || '');
+	}, [params]);
+
+	useEffect(() => {
+		const handler = setTimeout(() => {
+			const newParams = new URLSearchParams(params);
+
+			if (searchTerm.trim()) {
+				newParams.set('keyword', searchTerm.trim());
+			} else {
+				newParams.delete('keyword');
+			}
+
+			setSearchParams(newParams);
+		}, 500);
+
+		return () => clearTimeout(handler);
+	}, [searchTerm, params, setSearchParams]);
 
 	const handleCategoryChange = (e) => {
-		setCategory(e.target.value);
+		const selectedCategory = e.target.value;
+		const newParams = new URLSearchParams(params);
+
+		if (selectedCategory === 'all') {
+			newParams.delete('category'); // We don't want to show "all" in URL if there's no category selection
+		} else {
+			newParams.set('category', selectedCategory);
+		}
+
+		setSearchParams(newParams);
+		setCategory(selectedCategory);
+	};
+
+	const toggleSortOrder = () => {
+		const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+		const newParams = new URLSearchParams(params);
+		newParams.set('sortby', newOrder);
+		setSearchParams(newParams);
+		setSortOrder(newOrder);
+	};
+
+	const handleClearFilter = () => {
+		setSearchParams({});
 	};
 
 	return (
@@ -39,6 +95,8 @@ const Filter = () => {
 					<input
 						type="text"
 						placeholder="Search Products"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
 						className="w-full px-10 py-2 border border-gray-400 rounded-md text-slate-900 focus:outline-none focus:ring-2 focus:border-primary"
 					/>
 					<FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-800 text-xl" />
@@ -56,7 +114,7 @@ const Filter = () => {
 						label="Category"
 						value={category}
 						onChange={handleCategoryChange}>
-						<MenuItem value="all">All Categories</MenuItem>
+						<MenuItem value="all">All</MenuItem>
 						{categories.map((item) => (
 							<MenuItem key={item.categoryId} value={item.categoryName}>
 								{item.categoryName}
@@ -72,17 +130,24 @@ const Filter = () => {
 					<Button
 						variant="contained"
 						color="primary"
-						className="w-full sm:w-auto">
+						className="w-full sm:w-auto"
+						onClick={toggleSortOrder}>
 						Sort By
-						<FiArrowUp className="ml-2" size={20} />
+						{sortOrder === 'asc' ? (
+							<FiArrowUp className="ml-2" size={20} />
+						) : (
+							<FiArrowDown className="ml-2" size={20} />
+						)}
 					</Button>
 				</Tooltip>
 				<Tooltip title="Sorted by price">
 					<Button
 						variant="contained"
 						color="error"
-						className="w-full sm:w-auto">
+						className="w-full sm:w-auto"
+						onClick={handleClearFilter}>
 						Clear Filter
+						<IoIosRefresh className="ml-2" size={20} />
 					</Button>
 				</Tooltip>
 			</div>

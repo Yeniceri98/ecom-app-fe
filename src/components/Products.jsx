@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import ProductCard from './ProductCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from '../redux/actions/actions';
+import { useSelector } from 'react-redux';
 import Filter from './Filter';
+import useProductFilter from './useProductFilter';
 
 const Products = () => {
 	// Redux
@@ -12,11 +11,15 @@ const Products = () => {
 		(state) => state.loadingAndErrors
 	);
 
-	const dispatch = useDispatch();
+	useProductFilter();
 
-	useEffect(() => {
-		dispatch(getAllProducts());
-	}, [dispatch]);
+	// No need for useEffect() after adding useProductFilter() since we dispatch the action in this custom hook
+
+	// const dispatch = useDispatch();
+
+	// useEffect(() => {
+	// 	dispatch(getAllProducts());
+	// }, [dispatch]);
 
 	if (isLoading)
 		return (
