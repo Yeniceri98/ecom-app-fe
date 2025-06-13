@@ -70,7 +70,7 @@ const ProductCard = ({
 
 			<div className="mt-auto p-4">
 				<div className="flex justify-between items-center">
-					{specialPrice ? (
+					{discount ? (
 						<>
 							<div className="flex flex-row">
 								<span className="text-gray-500 line-through mb-1 p-1">
