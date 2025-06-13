@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { getAllProducts } from '../redux/actions/productActions';
+import { getAllProducts } from '../../redux/actions/productActions';
 
 const useProductFilter = () => {
 	const [searchParams] = useSearchParams();

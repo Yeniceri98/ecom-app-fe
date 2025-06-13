@@ -5,7 +5,7 @@ import {
 	DialogTitle,
 } from '@headlessui/react';
 import { Divider } from '@mui/material';
-import Status from './Status';
+import Status from './shared/Status';
 import { MdDone, MdClose } from 'react-icons/md';
 
 function ProductViewModal({ isOpen, setIsOpen, product, isAvailable }) {
