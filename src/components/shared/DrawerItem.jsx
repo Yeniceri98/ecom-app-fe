@@ -69,8 +69,8 @@ function DrawerItem({ children }) {
 							<MenuIcon />
 						</IconButton>
 						<IconButton color="inherit" component={Link} to="/">
-							<StoreIcon className="mr-1" />
-							<Typography variant="h6" noWrap component="div">
+							<StoreIcon />
+							<Typography variant="h6" noWrap component="div" sx={{ ml: 1 }}>
 								ASY ECOM
 							</Typography>
 						</IconButton>
@@ -85,8 +85,10 @@ function DrawerItem({ children }) {
 							</Typography>
 						</IconButton>
 						<IconButton color="inherit" component={Link} to="/login">
-							<LoginIcon className="mr-1" />
-							<Typography variant="subtitle2">Login</Typography>
+							<LoginIcon />
+							<Typography variant="subtitle2" sx={{ ml: 1 }}>
+								Login
+							</Typography>
 						</IconButton>
 					</Box>
 				</Toolbar>
