@@ -45,7 +45,7 @@ const Products = () => {
 		);
 
 	return (
-		<div className="container mx-auto px-4 py-8">
+		<div className="container mx-auto px-4 py-20">
 			<Filter categories={categories ? categories : []} />
 			{categoryLoading && <div className="mb-6">Loading categories...</div>}
 			{categoryErrorMessage && (
@@ -55,10 +55,7 @@ const Products = () => {
 			)}
 			{products?.length > 0 ? (
 				<>
-					<h2 className="text-3xl font-bold text-gray-800 mb-6">
-						Our Products
-					</h2>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
 						{products.map((product) => (
 							<ProductCard key={product.id} {...product} />
 						))}

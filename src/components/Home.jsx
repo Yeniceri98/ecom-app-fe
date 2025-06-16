@@ -1,13 +1,13 @@
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import useProductFilter from '../hooks/useProductFilter';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 const Home = () => {
 	const productsState = useSelector((state) => state.products);
@@ -17,7 +17,7 @@ const Home = () => {
 	const products = productsState?.products || [];
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-gray-50 py-16">
 			{/* Hero Section */}
 			<div className="bg-indigo-700 text-white py-16">
 				<div className="container mx-auto px-4 text-center">
