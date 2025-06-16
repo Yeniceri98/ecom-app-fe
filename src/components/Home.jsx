@@ -125,6 +125,44 @@ const Home = () => {
 					</div>
 				)}
 			</div>
+
+			{/* Contact Section */}
+			<div className="bg-gray-100 py-12">
+				<div className="container mx-auto px-4 text-center">
+					<h2 className="text-3xl font-bold text-gray-800 mb-8">Contact Us</h2>
+
+					<div className="max-w-md mx-auto">
+						<p className="text-gray-600 mb-6">
+							Have a question? We're here to help!
+						</p>
+						<div className="flex items-center justify-center space-x-6 mb-8">
+							<div>
+								<h3 className="text-lg font-semibold text-gray-800 mb-2">
+									Email
+								</h3>
+								<a
+									href="mailto:support@example.com"
+									className="text-indigo-600 hover:text-indigo-800">
+									support@example.com
+								</a>
+							</div>
+							<div>
+								<h3 className="text-lg font-semibold text-gray-800 mb-2">
+									Phone
+								</h3>
+								<a
+									href="tel:+1234567890"
+									className="text-indigo-600 hover:text-indigo-800">
+									(123) 456-7890
+								</a>
+							</div>
+						</div>
+						<p className="text-sm text-gray-500">
+							Business Hours: Monday - Friday, 9:00 AM - 5:00 PM
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
