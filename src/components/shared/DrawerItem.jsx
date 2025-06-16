@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import GroupsIcon from '@mui/icons-material/Groups';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 200;
@@ -54,18 +55,20 @@ function DrawerItem({ children }) {
 						}),
 					}),
 				}}>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						sx={{ mr: 2, ...(open && { display: 'none' }) }}>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" noWrap component="div">
-						ASY ECOM
-					</Typography>
+				<Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+						<IconButton
+							color="inherit"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							edge="start"
+							sx={{ mr: 2, ...(open && { display: 'none' }) }}>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="h6" noWrap component="div">
+							ASY ECOM
+						</Typography>
+					</Box>
 				</Toolbar>
 			</MuiAppBar>
 
@@ -88,6 +91,11 @@ function DrawerItem({ children }) {
 							text: 'Products',
 							icon: <ShoppingBasketIcon />,
 							path: '/products',
+						},
+						{
+							text: 'About',
+							icon: <GroupsIcon />,
+							path: '/about',
 						},
 					].map((item) => (
 						<ListItem key={item.text} disablePadding>
@@ -115,5 +123,4 @@ function DrawerItem({ children }) {
 		</Box>
 	);
 }
-
 export default DrawerItem;
