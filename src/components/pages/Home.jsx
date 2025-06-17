@@ -17,7 +17,7 @@ const Home = () => {
 	const products = productsState?.products || [];
 
 	return (
-		<div className="min-h-screen bg-gray-50 py-16">
+		<div className="min-h-screen bg-gray-50">
 			{/* Hero Section */}
 			<div className="bg-indigo-700 text-white py-16">
 				<div className="container mx-auto px-4 text-center">

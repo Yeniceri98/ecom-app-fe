@@ -45,7 +45,7 @@ const Products = () => {
 		);
 
 	return (
-		<div className="container mx-auto px-4 py-20">
+		<div className="container mx-auto px-4">
 			<Filter categories={categories ? categories : []} />
 			{categoryLoading && <div className="mb-6">Loading categories...</div>}
 			{categoryErrorMessage && (
