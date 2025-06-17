@@ -40,7 +40,7 @@ function DrawerItem({ children }) {
 	};
 
 	return (
-		<Box sx={{ display: 'flex' }}>
+		<Box sx={{ display: 'flex', width: '100%', overflow: 'hidden' }}>
 			<MuiAppBar
 				position="fixed"
 				sx={{
@@ -94,7 +94,18 @@ function DrawerItem({ children }) {
 				</Toolbar>
 			</MuiAppBar>
 
-			<Drawer variant="persistent" anchor="left" open={open}>
+			<Drawer
+				sx={{
+					width: drawerWidth,
+					flexShrink: 0,
+					'& .MuiDrawer-paper': {
+						width: drawerWidth,
+						boxSizing: 'border-box',
+					},
+				}}
+				variant="persistent"
+				anchor="left"
+				open={open}>
 				<Toolbar />
 				<div className="flex items-center justify-end p-1">
 					<IconButton onClick={handleDrawerClose}>
@@ -134,11 +145,20 @@ function DrawerItem({ children }) {
 				component="main"
 				sx={{
 					flexGrow: 1,
+					width: '100%',
+					paddingTop: '64px', // Default AppBar Height
 					transition: theme.transitions.create('margin', {
 						easing: theme.transitions.easing.sharp,
 						duration: theme.transitions.duration.leavingScreen,
 					}),
-					marginLeft: open ? `${drawerWidth}px` : 0,
+					marginLeft: `-${drawerWidth}px`,
+					...(open && {
+						transition: theme.transitions.create('margin', {
+							easing: theme.transitions.easing.easeOut,
+							duration: theme.transitions.duration.enteringScreen,
+						}),
+						marginLeft: 0,
+					}),
 				}}>
 				{children}
 			</Box>
