@@ -1,11 +1,11 @@
 import { FaExclamationTriangle } from 'react-icons/fa';
-import ProductCard from './ProductCard';
+import ProductCard from '../ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
-import Filter from './Filter';
-import useProductFilter from '../hooks/useProductFilter';
-import { getAllCategories } from '../redux/actions/categoryActions';
+import Filter from '../Filter';
+import useProductFilter from '../../hooks/useProductFilter';
+import { getAllCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
-import Paginations from './shared/Paginations';
+import Paginations from '../shared/Paginations';
 
 const Products = () => {
 	// Redux

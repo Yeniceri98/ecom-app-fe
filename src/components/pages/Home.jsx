@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import useProductFilter from '../hooks/useProductFilter';
+import useProductFilter from '../../hooks/useProductFilter';
 
 const Home = () => {
 	const productsState = useSelector((state) => state.products);

@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Products from './components/Products';
-import Home from './components/Home';
+import Products from './components/pages/Products';
+import Home from './components/pages/Home';
 import DrawerItem from './components/shared/DrawerItem';
-import About from './components/About';
+import About from './components/pages/About';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
