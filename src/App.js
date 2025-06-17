@@ -4,6 +4,7 @@ import Home from './components/pages/Home';
 import DrawerItem from './components/shared/DrawerItem';
 import About from './components/pages/About';
 import { Toaster } from 'react-hot-toast';
+import Cart from './components/pages/Cart';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/products" element={<Products />} />
 						<Route path="/about" element={<About />} />
+						<Route path="/cart" element={<Cart />} />
 					</Routes>
 				</DrawerItem>
 			</Router>
