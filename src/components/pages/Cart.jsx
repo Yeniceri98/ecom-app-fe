@@ -58,7 +58,7 @@ const Cart = () => {
 				<div className="col-start-4 md:col-start-5 col-span-1 flex text-sm gap-1 flex-col w-full">
 					<div className="flex justify-between w-full md:text-lg text-sm font-semibold">
 						<span>Subtotal</span>
-						<span>$500</span>
+						<span>${newCart.totalPrice.toFixed(2)}</span>
 					</div>
 					<p className="text-slate-500">
 						Taxes and shipping calculated at checkout
@@ -82,5 +82,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-// https://tailwindcss.com/docs/grid-template-columns
