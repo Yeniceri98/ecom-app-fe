@@ -30,7 +30,6 @@ const CartItem = ({
 	};
 
 	const handleQuantityIncrease = (cartItems) => {
-		console.log('cartItems', cartItems);
 		dispatch(
 			increaseCartQuantity(
 				cartItems,
