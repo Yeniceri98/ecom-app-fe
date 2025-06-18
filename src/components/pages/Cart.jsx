@@ -45,13 +45,7 @@ const Cart = () => {
 			<div>
 				{cart &&
 					cart.length > 0 &&
-					cart.map((item) => (
-						<CartItem
-							key={item.productId}
-							{...item}
-							totalPrice={newCart.totalPrice}
-						/>
-					))}
+					cart.map((item) => <CartItem key={item.productId} {...item} />)}
 			</div>
 
 			<div className="border-t-[1.5px] border-slate-200 py-4 grid grid-cols-4 md:grid-cols-5">

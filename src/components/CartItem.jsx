@@ -17,7 +17,6 @@ const CartItem = ({
 	price,
 	discount,
 	specialPrice,
-	totalPrice,
 }) => {
 	const [currentQuantity, setCurrentQuantity] = useState(quantity);
 	const dispatch = useDispatch();
@@ -97,7 +96,6 @@ const CartItem = ({
 								price,
 								discount,
 								specialPrice,
-								totalPrice,
 							})
 						}>
 						-
@@ -115,7 +113,6 @@ const CartItem = ({
 								price,
 								discount,
 								specialPrice,
-								totalPrice,
 							})
 						}>
 						+
