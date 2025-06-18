@@ -1,5 +1,12 @@
 import { useState } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import toast from 'react-hot-toast';
+import {
+	decreaseCartQuantity,
+	increaseCartQuantity,
+	removeFromCart,
+} from '../redux/actions/cartActions';
+import { useDispatch } from 'react-redux';
 
 const CartItem = ({
 	productId,
@@ -13,6 +20,31 @@ const CartItem = ({
 	totalPrice,
 }) => {
 	const [currentQuantity, setCurrentQuantity] = useState(quantity);
+	const dispatch = useDispatch();
+
+	const handleQuantityDecrease = (cartItems) => {
+		if (currentQuantity > 1) {
+			const newQuantity = currentQuantity - 1;
+			setCurrentQuantity(newQuantity);
+			dispatch(decreaseCartQuantity(cartItems, newQuantity));
+		}
+	};
+
+	const handleQuantityIncrease = (cartItems) => {
+		console.log('cartItems', cartItems);
+		dispatch(
+			increaseCartQuantity(
+				cartItems,
+				toast,
+				currentQuantity,
+				setCurrentQuantity
+			)
+		);
+	};
+
+	const removeItemFromCart = (cartItems) => {
+		dispatch(removeFromCart(cartItems, toast));
+	};
 
 	return (
 		<div className="grid md:grid-cols-5 grid-cols-4 md:text-md text-sm gap-8 items-center border border-purple-300 py-4 px-1">
@@ -32,7 +64,17 @@ const CartItem = ({
 				<div className="flex items-start gap-5 my-2 mx-2">
 					<button
 						className="flex items-center font-semibold space-x-2 px-4 py-1 text-xs border border-rose-500 text-rose-600 rounded-md hover:bg-red-100 duration-200"
-						onClick={() => {}}>
+						onClick={() =>
+							removeItemFromCart({
+								image,
+								productName,
+								description,
+								specialPrice,
+								price,
+								productId,
+								quantity,
+							})
+						}>
 						<FaRegTrashAlt size={16} className="mr-2" />
 						Remove
 					</button>
@@ -45,13 +87,37 @@ const CartItem = ({
 				<div className="flex items-center gap-2">
 					<button
 						className="px-2 py-1 border rounded-md"
-						onClick={() => setCurrentQuantity((prev) => Math.max(1, prev - 1))}>
+						onClick={() =>
+							handleQuantityDecrease({
+								productId,
+								productName,
+								image,
+								description,
+								quantity,
+								price,
+								discount,
+								specialPrice,
+								totalPrice,
+							})
+						}>
 						-
 					</button>
 					<span>{currentQuantity}</span>
 					<button
 						className="px-2 py-1 border rounded-md"
-						onClick={() => setCurrentQuantity((prev) => prev + 1)}>
+						onClick={() =>
+							handleQuantityIncrease({
+								productId,
+								productName,
+								image,
+								description,
+								quantity,
+								price,
+								discount,
+								specialPrice,
+								totalPrice,
+							})
+						}>
 						+
 					</button>
 				</div>
