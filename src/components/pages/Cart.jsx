@@ -1,12 +1,11 @@
 import { MdShoppingCart } from 'react-icons/md';
 import { MdArrowBack } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartItem from '../CartItem';
+import CartEmpty from '../CartEmpty';
 
 const Cart = () => {
-	const dispatch = useDispatch();
-
 	const { cart } = useSelector((state) => state.carts);
 	const newCart = { ...cart };
 
@@ -17,11 +16,7 @@ const Cart = () => {
 	);
 
 	if (!cart || cart.length === 0) {
-		return (
-			<h1 className="text-2xl font-semibold text-center text-gray-600 mt-8">
-				Cart is Empty
-			</h1>
-		);
+		return <CartEmpty />;
 	}
 
 	return (
