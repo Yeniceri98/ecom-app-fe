@@ -24,12 +24,15 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import GroupsIcon from '@mui/icons-material/Groups';
 import LoginIcon from '@mui/icons-material/Login';
 import StoreIcon from '@mui/icons-material/Store';
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 200;
 
 function DrawerItem({ children }) {
 	const theme = useTheme();
 	const [open, setOpen] = useState(false);
+
+	const { cart } = useSelector((state) => state.carts);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -77,7 +80,7 @@ function DrawerItem({ children }) {
 					</Box>
 					<Box sx={{ display: 'flex', gap: 2 }}>
 						<IconButton color="inherit" component={Link} to="/cart">
-							<Badge badgeContent="0" color="error">
+							<Badge badgeContent={cart?.length || 0} color="error">
 								<ShoppingBasketIcon />
 							</Badge>
 							<Typography variant="subtitle2" sx={{ ml: 1 }}>
