@@ -39,7 +39,7 @@ const InputField = ({
 							: type === 'url'
 							? {
 									value:
-										/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+										/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
 									message: 'Invalid URL format',
 							  }
 							: null,
