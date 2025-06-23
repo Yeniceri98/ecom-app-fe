@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Backdrop from './shared/Backdrop';
 
 const UserMenu = () => {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -51,6 +52,8 @@ const UserMenu = () => {
 					<span>Logout</span>
 				</MenuItem>
 			</Menu>
+
+			{open && <Backdrop />}
 		</>
 	);
 };
