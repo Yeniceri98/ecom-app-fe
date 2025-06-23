@@ -119,7 +119,7 @@ const CartItem = ({
 				</div>
 			</div>
 			<div className="justify-self-center lg:text-[18px] font-semibold">
-				<p className="text-gray-600">{specialPrice * currentQuantity}</p>
+				<p className="text-gray-600">${specialPrice * currentQuantity}</p>
 			</div>
 		</div>
 	);
