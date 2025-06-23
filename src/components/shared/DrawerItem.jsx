@@ -24,8 +24,8 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import GroupsIcon from '@mui/icons-material/Groups';
 import LoginIcon from '@mui/icons-material/Login';
 import StoreIcon from '@mui/icons-material/Store';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useSelector } from 'react-redux';
+import UserMenu from '../UserMenu';
 
 const drawerWidth = 200;
 
@@ -91,9 +91,7 @@ function DrawerItem({ children }) {
 						</IconButton>
 
 						{user && user.userId ? (
-							<IconButton color="inherit">
-								<AccountCircleIcon />
-							</IconButton>
+							<UserMenu />
 						) : (
 							<IconButton color="inherit" component={Link} to="/login">
 								<LoginIcon />
