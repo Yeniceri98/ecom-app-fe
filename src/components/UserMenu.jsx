@@ -5,7 +5,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Backdrop from './shared/Backdrop';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../redux/actions/authActions';
 import toast from 'react-hot-toast';
 
@@ -15,6 +15,8 @@ const UserMenu = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	const { user } = useSelector((state) => state.auth);
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -45,7 +47,7 @@ const UserMenu = () => {
 				<Link to="/profile">
 					<MenuItem onClick={handleClose}>
 						<AccountCircleIcon className="mr-2" />
-						<span>Profile</span>
+						<span>{user.username}</span>
 					</MenuItem>
 				</Link>
 				<Link to="/profile/orders">
