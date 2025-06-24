@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoIosLogIn } from 'react-icons/io';
 import InputField from '../shared/InputField';
 import { useDispatch } from 'react-redux';
-import { authenticateSignInUser } from '../../redux/actions/authActions';
+import { loginUser } from '../../redux/actions/authActions';
 import toast from 'react-hot-toast';
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
 	});
 
 	const loginHandler = async (data) => {
-		dispatch(authenticateSignInUser(data, reset, navigate, setLoader, toast));
+		dispatch(loginUser(data, reset, navigate, setLoader, toast));
 	};
 
 	return (

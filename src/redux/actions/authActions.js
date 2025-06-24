@@ -1,6 +1,6 @@
 import api from '../../api/api';
 
-export const authenticateSignInUser =
+export const loginUser =
 	(sendData, reset, navigate, setLoader, toast) => async (dispatch) => {
 		try {
 			setLoader(true);
