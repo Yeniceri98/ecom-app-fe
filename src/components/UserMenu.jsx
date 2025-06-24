@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { Avatar, Menu, MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Backdrop from './shared/Backdrop';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../redux/actions/authActions';
+import toast from 'react-hot-toast';
 
 const UserMenu = () => {
 	const [anchorEl, setAnchorEl] = useState(null);
-
 	const open = Boolean(anchorEl);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -19,7 +24,9 @@ const UserMenu = () => {
 		setAnchorEl(null);
 	};
 
-	const logoutHandler = () => {};
+	const logoutHandler = () => {
+		dispatch(logoutUser(navigate, toast));
+	};
 
 	return (
 		<>

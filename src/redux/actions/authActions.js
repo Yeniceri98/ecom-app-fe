@@ -20,3 +20,16 @@ export const loginUser =
 			setLoader(false);
 		}
 	};
+
+export const logoutUser = (navigate, toast) => async (dispatch) => {
+	try {
+		dispatch({
+			type: 'LOGOUT_USER',
+		});
+		localStorage.removeItem('auth');
+		toast.success('Logout Success');
+		navigate('/login');
+	} catch (error) {
+		toast.error(error?.response.data.message || 'Internal Server Error');
+	}
+};
