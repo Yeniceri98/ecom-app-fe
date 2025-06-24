@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import Cart from './components/pages/Cart';
 import Login from './components/pages/Login';
 import PrivateRoute from './components/PrivateRoute';
+import Register from './components/pages/Register';
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 						<Route path="/" element={<PrivateRoute publicPage />}>
 							<Route path="/login" element={<Login />} />
 						</Route>
+						<Route path="/register" element={<Register />} />
 					</Routes>
 				</DrawerItem>
 			</Router>
