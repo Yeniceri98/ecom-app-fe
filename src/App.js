@@ -6,6 +6,7 @@ import About from './components/pages/About';
 import { Toaster } from 'react-hot-toast';
 import Cart from './components/pages/Cart';
 import Login from './components/pages/Login';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 	return (
@@ -17,7 +18,9 @@ function App() {
 						<Route path="/products" element={<Products />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/cart" element={<Cart />} />
-						<Route path="/login" element={<Login />} />
+						<Route path="/" element={<PrivateRoute publicPage />}>
+							<Route path="/login" element={<Login />} />
+						</Route>
 					</Routes>
 				</DrawerItem>
 			</Router>
