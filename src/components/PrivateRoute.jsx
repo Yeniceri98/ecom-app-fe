@@ -5,7 +5,7 @@ const PrivateRoute = ({ publicPage = false }) => {
 	const { user } = useSelector((state) => state.auth);
 
 	if (publicPage) {
-		return user && user.userId ? <Navigate to="/profile" /> : <Outlet />;
+		return user && user.userId ? <Navigate to="/" /> : <Outlet />;
 	} else {
 		return user && user.userId ? <Outlet /> : <Navigate to="/login" />;
 	}
