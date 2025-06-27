@@ -8,6 +8,7 @@ import Cart from './components/pages/Cart';
 import Login from './components/pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Register from './components/pages/Register';
+import Checkout from './components/pages/Checkout';
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 							<Route path="/login" element={<Login />} />
 						</Route>
 						<Route path="/register" element={<Register />} />
+						<Route path="/checkout" element={<Checkout />} />
 					</Routes>
 				</DrawerItem>
 			</Router>
