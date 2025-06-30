@@ -14,3 +14,24 @@ export const addAddress =
 			setIsAddressModalOpen(false);
 		}
 	};
+
+export const getUserAddresses = () => async (dispatch) => {
+	try {
+		dispatch({ type: 'FETCH_ADDRESSES_REQUEST' });
+
+		const { data } = await api.get(`/user/addresses`);
+
+		dispatch({
+			type: 'GET_USER_ADDRESSES',
+			payload: data,
+		});
+
+		dispatch({ type: 'FETCH_ADDRESSES_SUCCESS' });
+	} catch (error) {
+		dispatch({
+			type: 'FETCH_ADDRESSES_ERROR',
+			payload:
+				error?.response?.data?.message || 'Failed to fetch user addresses',
+		});
+	}
+};
