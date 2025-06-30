@@ -1,22 +1,27 @@
 import { useForm } from 'react-hook-form';
 import InputField from './shared/InputField';
 import { FaAddressCard } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAddress } from '../redux/actions/addressActions';
+import toast from 'react-hot-toast';
 
-const AddAddressForm = () => {
+const AddAddressForm = ({ address, setIsAddressModalOpen }) => {
 	const { btnLoader } = useSelector((state) => state.loadingAndErrors);
+
+	const dispatch = useDispatch();
 
 	// react-hook-form
 	const {
 		register,
 		handleSubmit,
-		reset,
 		formState: { errors },
 	} = useForm({
 		mode: 'onTouched',
 	});
 
-	const submitHandler = () => {};
+	const submitHandler = (data) => {
+		dispatch(addAddress(data, setIsAddressModalOpen, toast));
+	};
 
 	return (
 		<form
@@ -31,7 +36,7 @@ const AddAddressForm = () => {
 			<hr className="mt-2 mb-5 text-black" />
 			<div className="flex flex-col gap-5">
 				<InputField
-					id="building"
+					id="buildingName"
 					label="Building Name"
 					placeholder="Enter your building name"
 					message="Building Name is required"
@@ -61,17 +66,17 @@ const AddAddressForm = () => {
 					required
 				/>
 				<InputField
-					id="pincode"
-					label="Pincode"
-					placeholder="Enter your pincode"
-					message="Pincode is required"
+					id="zipcode"
+					label="Zipcode"
+					placeholder="Enter your zipcode"
+					message="Zipcode is required"
 					type="text"
 					register={register}
 					errors={errors}
 					required
 				/>
 				<InputField
-					id="street"
+					id="streetName"
 					label="Street"
 					placeholder="Enter your street"
 					message="Street is required"

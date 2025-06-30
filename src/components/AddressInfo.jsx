@@ -3,16 +3,17 @@ import { Skeleton } from '@mui/material';
 import { useState } from 'react';
 import { FaAddressBook, FaTimes } from 'react-icons/fa';
 import AddAddressForm from './AddAddressForm';
+import { useSelector } from 'react-redux';
 
 const AddressInfo = () => {
 	const isAddressExist = false;
-	const isLoading = false;
+	const { addressLoading } = useSelector((state) => state.loadingAndErrors);
 
 	const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 	const [selectedAddress, setSelectedAddress] = useState('');
 
 	const addNewAddressHandler = () => {
-		setSelectedAddress(''); // clear purpose
+		setSelectedAddress(''); // clearing purpose
 		setIsAddressModalOpen(true);
 	};
 
@@ -22,7 +23,7 @@ const AddressInfo = () => {
 				<div className="relative p-6 rounded-lg max-w-md mx-auto">
 					<h1 className="text-center font-bold text-2xl">Select Address</h1>
 
-					{isLoading ? (
+					{addressLoading ? (
 						<div className="space-y-4 mt-2">
 							<Skeleton variant="text" width="80%" height={24} />
 							<Skeleton variant="text" width="60%" height={24} />
@@ -65,7 +66,10 @@ const AddressInfo = () => {
 							</button>
 						</div>
 						<div className="flex justify-center">
-							<AddAddressForm />
+							<AddAddressForm
+								address={selectedAddress}
+								setIsAddressModalOpen={setIsAddressModalOpen}
+							/>
 						</div>
 					</DialogPanel>
 				</div>
