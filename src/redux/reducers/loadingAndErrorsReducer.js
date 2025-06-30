@@ -3,6 +3,7 @@ const initialState = {
 	categoryLoading: false,
 	productErrorMessage: null,
 	categoryErrorMessage: null,
+	btnLoader: false,
 };
 
 const loadingAndErrorsReducer = (state = initialState, action) => {
