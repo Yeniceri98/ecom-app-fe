@@ -22,6 +22,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				categoryLoading: true,
 				categoryErrorMessage: null,
 			};
+		case 'FETCH_ADDRESSES_REQUEST':
+			return {
+				...state,
+				addressLoading: true,
+				addressErrorMessage: null,
+			};
 
 		case 'FETCH_PRODUCTS_SUCCESS':
 			return {
@@ -34,6 +40,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				...state,
 				categoryLoading: false,
 				categoryErrorMessage: null,
+			};
+		case 'FETCH_ADDRESSES_SUCCESS':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: null,
 			};
 
 		case 'FETCH_PRODUCTS_ERROR':
@@ -48,6 +60,13 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				categoryLoading: false,
 				categoryErrorMessage: action.payload,
 			};
+		case 'FETCH_ADDRESSES_ERROR':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: action.payload,
+			};
+
 		case 'ADD_ADDRESS_REQUEST':
 			return { ...state, btnLoader: true };
 		case 'ADD_ADDRESS_SUCCESS':
