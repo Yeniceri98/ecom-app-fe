@@ -1,8 +1,10 @@
 const initialState = {
 	productLoading: false,
 	categoryLoading: false,
+	addressLoading: false,
 	productErrorMessage: null,
 	categoryErrorMessage: null,
+	addressErrorMessage: null,
 	btnLoader: false,
 };
 
@@ -45,6 +47,15 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				...state,
 				categoryLoading: false,
 				categoryErrorMessage: action.payload,
+			};
+		case 'ADD_ADDRESS_REQUEST':
+			return { ...state, btnLoader: true };
+		case 'ADD_ADDRESS_SUCCESS':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: null,
+				btnLoader: false,
 			};
 		default:
 			return state;
