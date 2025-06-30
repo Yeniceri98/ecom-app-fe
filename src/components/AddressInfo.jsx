@@ -1,4 +1,4 @@
-import { DialogPanel, Dialog } from '@headlessui/react';
+import { DialogPanel, Dialog, DialogBackdrop } from '@headlessui/react';
 import { Skeleton } from '@mui/material';
 import { useState } from 'react';
 import { FaAddressBook, FaTimes } from 'react-icons/fa';
@@ -56,6 +56,7 @@ const AddressInfo = () => {
 				open={isAddressModalOpen}
 				onClose={() => setIsAddressModalOpen(false)}
 				className="relative z-5">
+				<DialogBackdrop className="fixed inset-0 bg-black/30" />
 				<div className="fixed inset-0 flex w-screen items-center justify-center p-4 mt-24">
 					<DialogPanel className="max-w-lg space-y-4 border bg-white p-12 relative">
 						<div className="absolute top-4 right-4">
