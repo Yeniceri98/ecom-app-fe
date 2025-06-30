@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { FaAddressBook, FaTimes } from 'react-icons/fa';
 import AddAddressForm from './AddAddressForm';
 import { useSelector } from 'react-redux';
+import AddressList from './AddressList';
 
-const AddressInfo = () => {
-	const isAddressExist = false;
-	const { addressLoading } = useSelector((state) => state.loadingAndErrors);
-
+const AddressInfo = ({ address }) => {
+	const isAddressExist = address?.length > 0;
 	const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 	const [selectedAddress, setSelectedAddress] = useState('');
+
+	const { addressLoading } = useSelector((state) => state.loadingAndErrors);
 
 	const addNewAddressHandler = () => {
 		setSelectedAddress(''); // clearing purpose
@@ -31,9 +32,24 @@ const AddressInfo = () => {
 							<Skeleton variant="text" width="40%" height={24} />
 						</div>
 					) : (
-						<div className="space-y-4 pt-4">
-							<p>Address List</p>
-						</div>
+						<>
+							<div className="space-y-4 pt-4">
+								<AddressList
+									address={address}
+									setSelectedAddress={setSelectedAddress}
+									setIsAddressModalOpen={setIsAddressModalOpen}
+								/>
+							</div>
+							{address.length > 0 && (
+								<div className="flex items-center justify-center mt-4">
+									<button
+										className="py-2 px-4 bg-blue-600 text-white"
+										onClick={addNewAddressHandler}>
+										Add More Address
+									</button>
+								</div>
+							)}
+						</>
 					)}
 				</div>
 			) : !isAddressModalOpen ? (
