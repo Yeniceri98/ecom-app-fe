@@ -82,6 +82,25 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				addressLoading: false,
 				addressErrorMessage: action.payload,
 			};
+
+		case 'DELETE_ADDRESS_REQUEST':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: null,
+			};
+		case 'DELETE_ADDRESS_SUCCESS':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: null,
+			};
+		case 'DELETE_ADDRESS_ERROR':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: action.payload,
+			};
 		default:
 			return state;
 	}

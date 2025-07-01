@@ -14,6 +14,7 @@ const AddressList = ({
 	address,
 	setSelectedAddress,
 	setIsAddressModalOpen,
+	setIsDeleteAddressModalOpen,
 }) => {
 	const { selectedUserCheckoutAddress } = useSelector((state) => state.auth);
 
@@ -30,6 +31,7 @@ const AddressList = ({
 
 	const deleteAddressHandler = (address) => {
 		setSelectedAddress(address);
+		setIsDeleteAddressModalOpen(true);
 	};
 
 	return (

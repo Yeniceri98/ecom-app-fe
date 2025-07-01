@@ -47,3 +47,19 @@ export const selectUserCheckoutAddress = (address) => {
 		payload: address,
 	};
 };
+
+export const deleteUserAddress =
+	(addressId, setIsDeleteAddressModalOpen, toast) => async (dispatch) => {
+		try {
+			dispatch({ type: 'DELETE_ADDRESS_REQUEST' });
+			await api.delete(`/addresses/${addressId}`);
+			dispatch({ type: 'DELETE_ADDRESS_SUCCESS' });
+			toast.success('Address Deleted Successfully');
+			dispatch(getUserAddresses());
+		} catch (error) {
+			toast.error(error?.response.data.message || 'Internal Server Error');
+			dispatch({ type: 'DELETE_ADDRESS_ERROR', payload: null });
+		} finally {
+			setIsDeleteAddressModalOpen(false);
+		}
+	};

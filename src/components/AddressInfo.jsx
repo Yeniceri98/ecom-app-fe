@@ -2,20 +2,37 @@ import { Skeleton } from '@mui/material';
 import { useState } from 'react';
 import { FaAddressBook } from 'react-icons/fa';
 import AddAddressForm from './AddAddressForm';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AddressList from './AddressList';
 import AddressInfoModal from './AddressInfoModal';
+import DeleteModal from './DeleteModal';
+import { deleteUserAddress } from '../redux/actions/addressActions';
+import toast from 'react-hot-toast';
 
 const AddressInfo = ({ address }) => {
 	const isAddressExist = address?.length > 0;
 	const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+	const [isDeleteAddressModalOpen, setIsDeleteAddressModalOpen] =
+		useState(false);
 	const [selectedAddress, setSelectedAddress] = useState('');
 
 	const { addressLoading } = useSelector((state) => state.loadingAndErrors);
 
+	const dispatch = useDispatch();
+
 	const addNewAddressHandler = () => {
 		setSelectedAddress(''); // clearing purpose
 		setIsAddressModalOpen(true);
+	};
+
+	const deleteAddressHandler = () => {
+		dispatch(
+			deleteUserAddress(
+				selectedAddress?.addressId,
+				setIsDeleteAddressModalOpen,
+				toast
+			)
+		);
 	};
 
 	return (
@@ -38,6 +55,7 @@ const AddressInfo = ({ address }) => {
 									address={address}
 									setSelectedAddress={setSelectedAddress}
 									setIsAddressModalOpen={setIsAddressModalOpen}
+									setIsDeleteAddressModalOpen={setIsDeleteAddressModalOpen}
 								/>
 							</div>
 							{address.length > 0 && (
@@ -77,6 +95,14 @@ const AddressInfo = ({ address }) => {
 					setIsAddressModalOpen={setIsAddressModalOpen}
 				/>
 			</AddressInfoModal>
+
+			<DeleteModal
+				open={isDeleteAddressModalOpen}
+				setOpen={setIsDeleteAddressModalOpen}
+				loader={addressLoading}
+				title="Delete Address"
+				onDeleteHandler={deleteAddressHandler}
+			/>
 		</div>
 	);
 };
