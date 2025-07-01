@@ -56,6 +56,7 @@ export const deleteUserAddress =
 			dispatch({ type: 'ADDRESS_REQUEST_SUCCESS' });
 			toast.success('Address Deleted Successfully');
 			dispatch(getUserAddresses());
+			dispatch(clearCheckoutAddress());
 		} catch (error) {
 			toast.error(error?.response.data.message || 'Internal Server Error');
 			dispatch({ type: 'ADDRESS_REQUEST_ERROR', payload: null });
@@ -63,3 +64,9 @@ export const deleteUserAddress =
 			setIsDeleteAddressModalOpen(false);
 		}
 	};
+
+export const clearCheckoutAddress = () => {
+	return {
+		type: 'REMOVE_CHECKOUT_ADDRESS',
+	};
+};
