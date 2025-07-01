@@ -1,10 +1,10 @@
-import { DialogPanel, Dialog, DialogBackdrop } from '@headlessui/react';
 import { Skeleton } from '@mui/material';
 import { useState } from 'react';
-import { FaAddressBook, FaTimes } from 'react-icons/fa';
+import { FaAddressBook } from 'react-icons/fa';
 import AddAddressForm from './AddAddressForm';
 import { useSelector } from 'react-redux';
 import AddressList from './AddressList';
+import AddressInfoModal from './AddressInfoModal';
 
 const AddressInfo = ({ address }) => {
 	const isAddressExist = address?.length > 0;
@@ -69,27 +69,14 @@ const AddressInfo = ({ address }) => {
 				</div>
 			) : null}
 
-			<Dialog
+			<AddressInfoModal
 				open={isAddressModalOpen}
-				onClose={() => setIsAddressModalOpen(false)}
-				className="relative z-5">
-				<DialogBackdrop className="fixed inset-0 bg-black/30" />
-				<div className="fixed inset-0 flex w-screen items-center justify-center p-4 mt-24">
-					<DialogPanel className="max-w-lg space-y-4 border bg-white p-12 relative">
-						<div className="absolute top-4 right-4">
-							<button onClick={() => setIsAddressModalOpen(false)}>
-								<FaTimes />
-							</button>
-						</div>
-						<div className="flex justify-center">
-							<AddAddressForm
-								address={selectedAddress}
-								setIsAddressModalOpen={setIsAddressModalOpen}
-							/>
-						</div>
-					</DialogPanel>
-				</div>
-			</Dialog>
+				setOpen={setIsAddressModalOpen}>
+				<AddAddressForm
+					address={selectedAddress}
+					setIsAddressModalOpen={setIsAddressModalOpen}
+				/>
+			</AddressInfoModal>
 		</div>
 	);
 };
