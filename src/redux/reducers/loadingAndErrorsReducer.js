@@ -5,102 +5,67 @@ const initialState = {
 	productErrorMessage: null,
 	categoryErrorMessage: null,
 	addressErrorMessage: null,
-	btnLoader: false,
 };
 
 const loadingAndErrorsReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'FETCH_PRODUCTS_REQUEST':
+		case 'PRODUCTS_REQUEST':
 			return {
 				...state,
 				productLoading: true,
 				productErrorMessage: null,
 			};
-		case 'FETCH_CATEGORIES_REQUEST':
+		case 'CATEGORIES_REQUEST':
 			return {
 				...state,
 				categoryLoading: true,
 				categoryErrorMessage: null,
 			};
-		case 'FETCH_ADDRESSES_REQUEST':
+		case 'ADDRESS_REQUEST':
 			return {
 				...state,
 				addressLoading: true,
 				addressErrorMessage: null,
 			};
 
-		case 'FETCH_PRODUCTS_SUCCESS':
+		case 'PRODUCTS_REQUEST_SUCCESS':
 			return {
 				...state,
 				productLoading: false,
 				productErrorMessage: null,
 			};
-		case 'FETCH_CATEGORIES_SUCCESS':
+		case 'CATEGORIES_REQUEST_SUCCESS':
 			return {
 				...state,
 				categoryLoading: false,
 				categoryErrorMessage: null,
 			};
-		case 'FETCH_ADDRESSES_SUCCESS':
+		case 'ADDRESS_REQUEST_SUCCESS':
 			return {
 				...state,
 				addressLoading: false,
 				addressErrorMessage: null,
 			};
 
-		case 'FETCH_PRODUCTS_ERROR':
+		case 'PRODUCTS_REQUEST_ERROR':
 			return {
 				...state,
 				productLoading: false,
 				productErrorMessage: action.payload,
 			};
-		case 'FETCH_CATEGORIES_ERROR':
+		case 'CATEGORIES_REQUEST_ERROR':
 			return {
 				...state,
 				categoryLoading: false,
 				categoryErrorMessage: action.payload,
 			};
-		case 'FETCH_ADDRESSES_ERROR':
+		case 'ADDRESS_REQUEST_ERROR':
 			return {
 				...state,
 				addressLoading: false,
 				addressErrorMessage: action.payload,
 			};
 
-		case 'ADD_UPDATE_ADDRESS_REQUEST':
-			return { ...state, btnLoader: true };
-		case 'ADD_UPDATE_ADDRESS_SUCCESS':
-			return {
-				...state,
-				addressLoading: false,
-				addressErrorMessage: null,
-				btnLoader: false,
-			};
-		case 'ADD_UPDATE_ADDRESS_ERROR':
-			return {
-				...state,
-				addressLoading: false,
-				addressErrorMessage: action.payload,
-			};
-
-		case 'DELETE_ADDRESS_REQUEST':
-			return {
-				...state,
-				addressLoading: false,
-				addressErrorMessage: null,
-			};
-		case 'DELETE_ADDRESS_SUCCESS':
-			return {
-				...state,
-				addressLoading: false,
-				addressErrorMessage: null,
-			};
-		case 'DELETE_ADDRESS_ERROR':
-			return {
-				...state,
-				addressLoading: false,
-				addressErrorMessage: action.payload,
-			};
 		default:
 			return state;
 	}

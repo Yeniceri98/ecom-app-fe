@@ -2,7 +2,7 @@ import api from '../../api/api';
 
 export const getAllProducts = (queryString) => async (dispatch) => {
 	try {
-		dispatch({ type: 'FETCH_PRODUCTS_REQUEST' });
+		dispatch({ type: 'PRODUCTS_REQUEST' });
 
 		const urlParams = new URLSearchParams(queryString);
 		const pageNumber = urlParams.get('page')
@@ -31,10 +31,10 @@ export const getAllProducts = (queryString) => async (dispatch) => {
 			lastPage: data.lastPage,
 		});
 
-		dispatch({ type: 'FETCH_PRODUCTS_SUCCESS' });
+		dispatch({ type: 'PRODUCTS_REQUEST_SUCCESS' });
 	} catch (error) {
 		dispatch({
-			type: 'FETCH_PRODUCTS_ERROR',
+			type: 'PRODUCTS_REQUEST_ERROR',
 			payload: error?.response?.data?.message || 'Failed to fetch products',
 		});
 	}

@@ -2,7 +2,7 @@ import api from '../../api/api';
 
 export const getAllCategories = (queryString) => async (dispatch) => {
 	try {
-		dispatch({ type: 'FETCH_CATEGORIES_REQUEST' });
+		dispatch({ type: 'CATEGORIES_REQUEST' });
 
 		const { data } = await api.get(`/public/categories?${queryString}`);
 
@@ -16,10 +16,10 @@ export const getAllCategories = (queryString) => async (dispatch) => {
 			lastPage: data.lastPage,
 		});
 
-		dispatch({ type: 'FETCH_CATEGORIES_SUCCESS' });
+		dispatch({ type: 'CATEGORIES_REQUEST_SUCCESS' });
 	} catch (error) {
 		dispatch({
-			type: 'FETCH_CATEGORIES_ERROR',
+			type: 'CATEGORIES_REQUEST_ERROR',
 			payload: error?.response?.data?.message || 'Failed to fetch categories',
 		});
 	}
