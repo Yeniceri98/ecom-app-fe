@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 
 const AddAddressForm = ({ address, setIsAddressModalOpen }) => {
-	const { btnLoader } = useSelector((state) => state.loadingAndErrors);
+	const { addressLoading } = useSelector((state) => state.loadingAndErrors);
 
 	const dispatch = useDispatch();
 
@@ -118,10 +118,10 @@ const AddAddressForm = ({ address, setIsAddressModalOpen }) => {
 				/>
 			</div>
 			<button
-				disabled={btnLoader}
+				disabled={addressLoading}
 				className="bg-blue-500 flex gap-2 items-center justify-center font-semibold text-white w-full py-2 hover:text-slate-300 transition-colors duration-200 rounded-sm mt-8 mb-3"
 				type="submit">
-				{btnLoader ? (
+				{addressLoading ? (
 					<p className="text-white font-medium">Loading...</p>
 				) : (
 					<p className="text-white font-medium">Save Address</p>
