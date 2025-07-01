@@ -8,16 +8,20 @@ import {
 } from 'react-icons/fa';
 import { TbBuildingEstate, TbMapPinCode } from 'react-icons/tb';
 import { GiWorld } from 'react-icons/gi';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserCheckoutAddress } from '../redux/actions/addressActions';
 
 const AddressList = ({
 	address,
 	setSelectedAddress,
 	setIsAddressModalOpen,
 }) => {
-	const [selectedUserAddress, setSelectedUserAddress] = useState([]);
+	const { selectedUserCheckoutAddress } = useSelector((state) => state.auth);
+
+	const dispatch = useDispatch();
 
 	const handleAddressSelection = (address) => {
-		setSelectedUserAddress(address);
+		dispatch(selectUserCheckoutAddress(address));
 	};
 
 	const updateAddressHandler = (address) => {
@@ -35,7 +39,7 @@ const AddressList = ({
 				<div
 					key={addr.addressId}
 					className={`bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow duration-300 ${
-						selectedUserAddress?.addressId === addr.addressId
+						selectedUserCheckoutAddress?.addressId === addr.addressId
 							? 'bg-blue-50 border-2 border-blue-500'
 							: ''
 					}`}
