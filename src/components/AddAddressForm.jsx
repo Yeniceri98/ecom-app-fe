@@ -19,13 +19,13 @@ const AddAddressForm = ({ address, setIsAddressModalOpen }) => {
 		mode: 'onTouched',
 	});
 
-	const submitHandler = (data) => {
+	const saveAddressHandler = (data) => {
 		dispatch(addAddress(data, setIsAddressModalOpen, toast));
 	};
 
 	return (
 		<form
-			onSubmit={handleSubmit(submitHandler)}
+			onSubmit={handleSubmit(saveAddressHandler)}
 			className="sm:w-[450px] w-[360px] shadow py-8 sm:px-8 px-4 rounded-md">
 			<div className="flex flex-col items-center justify-center space-y-4">
 				<FaAddressCard className="text-slate-800 text-5xl" />
