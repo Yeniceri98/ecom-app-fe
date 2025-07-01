@@ -67,14 +67,20 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				addressErrorMessage: action.payload,
 			};
 
-		case 'ADD_ADDRESS_REQUEST':
+		case 'ADD_UPDATE_ADDRESS_REQUEST':
 			return { ...state, btnLoader: true };
-		case 'ADD_ADDRESS_SUCCESS':
+		case 'ADD_UPDATE_ADDRESS_SUCCESS':
 			return {
 				...state,
 				addressLoading: false,
 				addressErrorMessage: null,
 				btnLoader: false,
+			};
+		case 'ADD_UPDATE_ADDRESS_ERROR':
+			return {
+				...state,
+				addressLoading: false,
+				addressErrorMessage: action.payload,
 			};
 		default:
 			return state;

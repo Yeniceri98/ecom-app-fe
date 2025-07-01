@@ -1,15 +1,20 @@
 import api from '../../api/api';
 
-export const addAddress =
-	(sendData, setIsAddressModalOpen, toast) => async (dispatch) => {
-		dispatch({ type: 'ADD_ADDRESS_REQUEST' });
+export const addUpdateUserAddress =
+	(sendData, addressId, setIsAddressModalOpen, toast) => async (dispatch) => {
+		dispatch({ type: 'ADD_UPDATE_ADDRESS_REQUEST' });
 		try {
-			await api.post('/addresses', sendData);
-			toast.success('Address Added Successfully');
-			dispatch({ type: 'ADD_ADDRESS_SUCCESS' });
+			if (!addressId) {
+				await api.post('/addresses', sendData); // Add
+			} else {
+				await api.put(`/addresses/${addressId}`, sendData); // Update
+			}
+			toast.success('Address Saved Successfully');
+			dispatch({ type: 'ADD_UPDATE_ADDRESS_SUCCESS' });
+			dispatch(getUserAddresses()); // NOTE: Without this call, we needed to refresh page to see newly added or updated addresses
 		} catch (error) {
 			toast.error(error?.response.data.message || 'Internal Server Error');
-			dispatch({ type: 'ADD_ADDRESS_ERROR', payload: null });
+			dispatch({ type: 'ADD_UPDATE_ADDRESS_ERROR', payload: null });
 		} finally {
 			setIsAddressModalOpen(false);
 		}
