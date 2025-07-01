@@ -44,10 +44,10 @@ const AddressList = ({
 					}`}
 					onClick={() => handleAddressSelection(addr)}>
 					<div className="text-gray-600 mb-1 flex items-center gap-2">
-						<FaStreetView /> {addr.streetName}
+						<FaBuilding /> {addr.buildingName}
 					</div>
 					<div className="text-gray-600 mb-1 flex items-center gap-2">
-						<FaBuilding /> {addr.buildingName}
+						<FaStreetView /> {addr.streetName}
 					</div>
 					{addr.state && (
 						<div className="text-gray-600 mb-1 flex items-center gap-2">
