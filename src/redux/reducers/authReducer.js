@@ -11,7 +11,7 @@ const authReducer = (state = initialState, action) => {
 		case 'LOGOUT_USER':
 			return { user: null, address: null };
 		case 'GET_USER_ADDRESSES':
-			return { user: null, address: action.payload };
+			return { ...state, address: action.payload };
 		case 'SELECT_CHECKOUT_ADDRESS':
 			return { ...state, selectedUserCheckoutAddress: action.payload };
 		case 'REMOVE_CHECKOUT_ADDRESS':
