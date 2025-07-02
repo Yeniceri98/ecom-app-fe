@@ -21,7 +21,11 @@ const AddressList = ({
 	const dispatch = useDispatch();
 
 	const handleAddressSelection = (address) => {
-		dispatch(selectUserCheckoutAddress(address));
+		if (selectedUserCheckoutAddress?.addressId === address.addressId) {
+			dispatch(selectUserCheckoutAddress(null));
+		} else {
+			dispatch(selectUserCheckoutAddress(address));
+		}
 	};
 
 	const updateAddressHandler = (address) => {
