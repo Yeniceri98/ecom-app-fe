@@ -22,9 +22,11 @@ function App() {
 						<Route path="/cart" element={<Cart />} />
 						<Route path="/" element={<PrivateRoute publicPage />}>
 							<Route path="/login" element={<Login />} />
+							<Route path="/register" element={<Register />} />
 						</Route>
-						<Route path="/register" element={<Register />} />
-						<Route path="/checkout" element={<Checkout />} />
+						<Route path="/" element={<PrivateRoute />}>
+							<Route path="/checkout" element={<Checkout />} />
+						</Route>
 					</Routes>
 				</DrawerItem>
 			</Router>
