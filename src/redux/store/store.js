@@ -4,6 +4,7 @@ import loadingAndErrorsReducer from '../reducers/loadingAndErrorsReducer';
 import categoryReducer from '../reducers/categoryReducer';
 import cartReducer from '../reducers/cartReducer';
 import authReducer from '../reducers/authReducer';
+import paymentMethodReducer from '../reducers/paymentMethodReducer';
 
 // Added localStorage and initialState so that the products that the user added to the cart do not disappear when the page is refreshed
 const cartItems = localStorage.getItem('cartItems')
@@ -27,6 +28,7 @@ const store = configureStore({
 		loadingAndErrors: loadingAndErrorsReducer,
 		carts: cartReducer,
 		auth: authReducer,
+		paymentMethod: paymentMethodReducer,
 	},
 	preloadedState: initialState,
 });
