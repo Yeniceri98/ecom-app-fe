@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import AddressInfo from '../AddressInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAddresses } from '../../redux/actions/addressActions';
+import PaymentMethod from '../PaymentMethod';
 
 const Checkout = () => {
 	const steps = ['Address', 'Payment Method', 'Order Summary', 'Payment'];
@@ -85,7 +86,7 @@ const Checkout = () => {
 			case 0:
 				return <AddressInfo address={address} />;
 			case 1:
-				return <div>Payment Method Component</div>;
+				return <PaymentMethod />;
 			case 2:
 				return <div>Order Summary Component</div>;
 			case 3:
