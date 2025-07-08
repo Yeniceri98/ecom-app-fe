@@ -5,7 +5,14 @@ const initialState = {
 };
 
 const cartReducer = (state = initialState, action) => {
+	console.log('cartReducer action', action);
 	switch (action.type) {
+		case 'LOGOUT_USER':
+			return {
+				cart: [],
+				cartId: null,
+				totalPrice: 0,
+			};
 		case 'ADD_TO_CART':
 			const productToAddToCart = action.payload;
 			const existingProductInCart = state.cart.find(
