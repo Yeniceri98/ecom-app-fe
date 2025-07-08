@@ -2,9 +2,11 @@ const initialState = {
 	productLoading: false,
 	categoryLoading: false,
 	addressLoading: false,
+	cartLoading: false,
 	productErrorMessage: null,
 	categoryErrorMessage: null,
 	addressErrorMessage: null,
+	cartErrorMessage: null,
 };
 
 const loadingAndErrorsReducer = (state = initialState, action) => {
@@ -27,6 +29,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				addressLoading: true,
 				addressErrorMessage: null,
 			};
+		case 'CART_REQUEST':
+			return {
+				...state,
+				cartLoading: true,
+				cartErrorMessage: null,
+			};
 
 		case 'PRODUCTS_REQUEST_SUCCESS':
 			return {
@@ -46,6 +54,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				addressLoading: false,
 				addressErrorMessage: null,
 			};
+		case 'CART_REQUEST_SUCCESS':
+			return {
+				...state,
+				cartLoading: false,
+				cartErrorMessage: null,
+			};
 
 		case 'PRODUCTS_REQUEST_ERROR':
 			return {
@@ -64,6 +78,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				...state,
 				addressLoading: false,
 				addressErrorMessage: action.payload,
+			};
+		case 'CART_REQUEST_ERROR':
+			return {
+				...state,
+				cartLoading: false,
+				cartErrorMessage: action.payload,
 			};
 
 		default:

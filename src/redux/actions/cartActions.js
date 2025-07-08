@@ -1,3 +1,5 @@
+import api from '../../api/api';
+
 export const addToCart =
 	(data, qty = 1, toast) =>
 	async (dispatch, getState) => {
@@ -136,4 +138,50 @@ export const removeFromCart = (data, toast) => (dispatch, getState) => {
 	dispatch({ type: 'REMOVE_FROM_CART', payload: data });
 	toast.success(`${data.productName} removed from cart`);
 	localStorage.setItem('cartItems', JSON.stringify(getState().carts.cart));
+};
+
+export const createOrUpdateCartWithItems =
+	(sendCartItems) => async (dispatch) => {
+		try {
+			console.log('createOrUpdateCartWithItems');
+			dispatch({
+				type: 'CART_REQUEST',
+			});
+			await api.post('/carts/create', sendCartItems);
+			await dispatch(getCartOfUser());
+		} catch (error) {
+			console.log('createOrUpdateCartWithItems error');
+			dispatch({
+				type: 'CART_REQUEST_ERROR',
+				payload:
+					error?.response?.data?.message ||
+					'Failed to create & update cart items',
+			});
+		}
+	};
+
+export const getCartOfUser = () => async (dispatch, getState) => {
+	try {
+		dispatch({
+			type: 'CART_REQUEST',
+		});
+		const { data } = await api.get('/carts/user/cart');
+		dispatch({
+			type: 'GET_USER_CART',
+			payload: data.products,
+			totalPrice: data.totalPrice,
+			cartId: data.cartId,
+		});
+		localStorage.setItem('cartItems', JSON.stringify(getState().carts.cart));
+		dispatch({
+			type: 'CART_REQUEST_SUCCESS',
+		});
+	} catch (error) {
+		dispatch({
+			type: 'CART_REQUEST_ERROR',
+			payload:
+				error?.response?.data?.message ||
+				'Failed to create & update cart items',
+		});
+	}
 };
