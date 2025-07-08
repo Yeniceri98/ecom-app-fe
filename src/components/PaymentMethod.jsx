@@ -6,11 +6,28 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPaymentMethod } from '../redux/actions/paymentMethodActions';
+import { useEffect } from 'react';
+import { createOrUpdateCartWithItems } from '../redux/actions/cartActions';
 
 const PaymentMethod = () => {
 	const { paymentMethod } = useSelector((state) => state.paymentMethod);
+	const { cart, cartId } = useSelector((state) => state.carts);
+	const { cartLoading, cartErrorMessage } = (state) => state.loadingAndErrors;
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (cart.length > 0 && !cartId && !cartErrorMessage) {
+			const sendCartItems = cart.map((item) => {
+				return {
+					productId: item.productId,
+					quantity: item.quantity,
+				};
+			});
+
+			dispatch(createOrUpdateCartWithItems(sendCartItems));
+		}
+	}, [dispatch, cartId]);
 
 	const handlePaymentMethodChange = (method) => {
 		dispatch(setPaymentMethod(method));
