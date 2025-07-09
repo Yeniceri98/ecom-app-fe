@@ -12,6 +12,7 @@ import AddressInfo from '../AddressInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAddresses } from '../../redux/actions/addressActions';
 import PaymentMethod from '../PaymentMethod';
+import OrderSummary from '../OrderSummary';
 
 const Checkout = () => {
 	const steps = ['Address', 'Payment Method', 'Order Summary', 'Payment'];
@@ -26,6 +27,8 @@ const Checkout = () => {
 	const { addressLoading, addressErrorMessage } = useSelector(
 		(state) => state.loadingAndErrors
 	);
+	const { cart, totalPrice } = useSelector((state) => state.carts);
+	const { paymentMethod } = useSelector((state) => state.paymentMethod);
 
 	useEffect(() => {
 		dispatch(getUserAddresses());
@@ -88,7 +91,14 @@ const Checkout = () => {
 			case 1:
 				return <PaymentMethod />;
 			case 2:
-				return <div>Order Summary Component</div>;
+				return (
+					<OrderSummary
+						totalPrice={totalPrice}
+						cart={cart}
+						address={selectedUserCheckoutAddress}
+						paymentMethod={paymentMethod}
+					/>
+				);
 			case 3:
 				return <div>Payment Component</div>;
 			default:
