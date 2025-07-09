@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserAddresses } from '../../redux/actions/addressActions';
 import PaymentMethod from '../PaymentMethod';
 import OrderSummary from '../OrderSummary';
+import StripePayment from '../StripePayment';
+import PaypalPayment from '../PaypalPayment';
 
 const Checkout = () => {
 	const steps = ['Address', 'Payment Method', 'Order Summary', 'Payment'];
@@ -100,7 +102,11 @@ const Checkout = () => {
 					/>
 				);
 			case 3:
-				return <div>Payment Component</div>;
+				return (
+					<>
+						{paymentMethod === 'stripe' ? <StripePayment /> : <PaypalPayment />}
+					</>
+				);
 			default:
 				return null;
 		}
