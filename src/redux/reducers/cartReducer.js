@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const cartReducer = (state = initialState, action) => {
-	console.log('cartReducer action', action);
 	switch (action.type) {
 		case 'LOGOUT_USER':
 			return {

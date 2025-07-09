@@ -143,14 +143,12 @@ export const removeFromCart = (data, toast) => (dispatch, getState) => {
 export const createOrUpdateCartWithItems =
 	(sendCartItems) => async (dispatch) => {
 		try {
-			console.log('createOrUpdateCartWithItems');
 			dispatch({
 				type: 'CART_REQUEST',
 			});
 			await api.post('/carts/create', sendCartItems);
 			await dispatch(getCartOfUser());
 		} catch (error) {
-			console.log('createOrUpdateCartWithItems error');
 			dispatch({
 				type: 'CART_REQUEST_ERROR',
 				payload:
