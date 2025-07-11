@@ -3,10 +3,12 @@ const initialState = {
 	categoryLoading: false,
 	addressLoading: false,
 	cartLoading: false,
+	stripeLoading: false,
 	productErrorMessage: null,
 	categoryErrorMessage: null,
 	addressErrorMessage: null,
 	cartErrorMessage: null,
+	stripeErrorMessage: null,
 };
 
 const loadingAndErrorsReducer = (state = initialState, action) => {
@@ -35,6 +37,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				cartLoading: true,
 				cartErrorMessage: null,
 			};
+		case 'STRIPE_REQUEST':
+			return {
+				...state,
+				stripeLoading: true,
+				stripeErrorMessage: null,
+			};
 
 		case 'PRODUCTS_REQUEST_SUCCESS':
 			return {
@@ -60,6 +68,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				cartLoading: false,
 				cartErrorMessage: null,
 			};
+		case 'STRIPE_REQUEST_SUCCESS':
+			return {
+				...state,
+				stripeLoading: false,
+				stripeErrorMessage: null,
+			};
 
 		case 'PRODUCTS_REQUEST_ERROR':
 			return {
@@ -84,6 +98,12 @@ const loadingAndErrorsReducer = (state = initialState, action) => {
 				...state,
 				cartLoading: false,
 				cartErrorMessage: action.payload,
+			};
+		case 'STRIPE_REQUEST_ERROR':
+			return {
+				...state,
+				stripeLoading: false,
+				stripeErrorMessage: action.payload,
 			};
 
 		default:
