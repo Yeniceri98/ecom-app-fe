@@ -9,6 +9,7 @@ import Login from './components/pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Register from './components/pages/Register';
 import Checkout from './components/pages/Checkout';
+import PaymentConfirmation from './components/pages/PaymentConfirmation';
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 						</Route>
 						<Route path="/" element={<PrivateRoute />}>
 							<Route path="/checkout" element={<Checkout />} />
+							<Route path="/order-confirm" element={<PaymentConfirmation />} />
 						</Route>
 					</Routes>
 				</DrawerItem>
