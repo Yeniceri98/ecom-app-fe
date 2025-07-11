@@ -17,3 +17,24 @@ export const createPaymentIntent = (totalPrice, toast) => async (dispatch) => {
 		);
 	}
 };
+
+// orderProducts api in backend
+export const stripePaymentConfirmation =
+	(sendData, setErrorMessage, toast) => async (dispatch) => {
+		try {
+			const response = await api.post('/order/users/payments/online', sendData);
+			if (response.data) {
+				// Since the order is placed and localStore need to be cleared
+				localStorage.removeItem('CHECKOUT_ADDRESS');
+				localStorage.removeItem('cartItems');
+				localStorage.removeItem('client-secret');
+				dispatch({ type: 'REMOVE_CLIENT_SECRET_ADDRESS' });
+				dispatch({ type: 'CLEAR_CART' });
+				toast.success('Order Received');
+			} else {
+				setErrorMessage('Payment Failed! Please try again...');
+			}
+		} catch (error) {
+			toast.error(error?.response.data.message || 'Failed to payment');
+		}
+	};
